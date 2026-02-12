@@ -3,56 +3,63 @@ import whi6 from "../assets/images/win6.jpg";
 
 const WhoWeAre = () => {
   return (
-     <section className="bg-neutral-950 py-16 sm:py-20 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+     <section className="bg-neutral-950 section-padding">
+      <div className="section-container">
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         {/* LEFT IMAGES */}
-        <div className="grid grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 gap-6">
           {/* Image 1 */}
-          <div className="overflow-hidden rounded-xl group">
+          <div className="overflow-hidden rounded-2xl group relative">
+             <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10" />
              <img
-            src={whi4}
-            alt="Premium Wine"
-            className="w-full h-64 sm:h-80 md:h-[400px] lg:h-[500px] object-cover transition duration-700 group-hover:scale-105"
-          />
+                src={whi4}
+                alt="Premium Wine"
+                className="w-full h-64 sm:h-80 md:h-[400px] object-cover transition duration-700 group-hover:scale-110"
+              />
           </div>
 
           {/* Image 2 */}
-          <div className="overflow-hidden rounded-xl group mt-6 sm:mt-8 md:mt-10">
+          <div className="overflow-hidden rounded-2xl group mt-12 relative">
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10" />
             <img
-            src={whi6}
-            alt="Premium Wine"
-            className="w-full h-64 sm:h-80 md:h-[400px] lg:h-[500px] object-cover transition duration-700 group-hover:scale-105"
-          />
+              src={whi6}
+              alt="Premium Wine"
+              className="w-full h-64 sm:h-80 md:h-[400px] object-cover transition duration-700 group-hover:scale-110"
+            />
           </div>
         </div>
 
         {/* RIGHT CONTENT */}
-        <div className="text-white space-y-4 sm:space-y-6">
-          <p className="text-xs sm:text-sm tracking-widest text-amber-400 uppercase">
-            Explore Our World
-          </p>
-
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif leading-snug">
-            We're A Family Run Business With A Passion For Wines
-          </h2>
-
-          <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
-            Dedicated since 1985, our winery blends tradition with innovation.
-            Every bottle tells a story of carefully selected grapes, expert
-            craftsmanship, and passion for delivering unforgettable flavors.
-          </p>
-
-          {/* Signature */}
+        <div className="text-white space-y-8">
           <div>
-            <p className="text-xl sm:text-2xl font-signature text-amber-400">
-              Peter Smith
-            </p>
-            <p className="text-xs sm:text-sm text-gray-500 tracking-widest">
-              CEO & Founder
-            </p>
+            <span className="text-sm font-bold tracking-[0.2em] text-amber-500 uppercase">
+              Why Choose Patil Bars
+            </span>
+            <h2 className="mt-4 leading-tight">
+              Nagpur’s Ultimate Destination for Drinks & Dining
+            </h2>
+          </div>
+
+          <p className="text-gray-400 text-lg leading-relaxed">
+            At Patil Bars, we define the nightlife in Nagpur. Whether you're looking for a relaxed evening with premium scotch or a high-energy party with live music, we are the place to be. 
+            Located conveniently in Nagpur, Maharashtra, we offer a sophisticated ambiance perfect for corporate meets and weekend celebrations alike.
+          </p>
+
+          <div className="grid gap-4">
+             {[
+               "Best Cocktails in Nagpur",
+               "Premium Lounge Experience",
+               "Exclusive Events & DJ Nights"
+             ].map((item, i) => (
+                <div key={i} className="flex items-center gap-4 bg-white/5 p-4 rounded-lg hover:bg-white/10 transition">
+                  <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-500 font-bold">✓</div>
+                  <h3 className="text-lg font-medium text-white mb-0">{item}</h3>
+                </div>
+             ))}
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

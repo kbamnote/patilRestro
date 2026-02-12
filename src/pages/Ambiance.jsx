@@ -9,25 +9,31 @@ const images = [amb1, amb2, amb3, amb4, amb5, amb6];
 
 const Ambiance = () => {
   return (
-    <div className="bg-neutral-950 text-gray-300 pt-24 sm:pt-28 px-4 sm:px-6 pb-12 sm:pb-16">
+    <div className="bg-neutral-950 text-gray-300 pt-32 pb-20">
       {/* Heading */}
-      <div className="text-center mb-10 sm:mb-14">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+      <div className="section-container text-center mb-16">
+        <h1 className="mb-6">
           Our Gallery
         </h1>
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          Take a sneak peek into the vibrant atmosphere and cozy corners of Patil Bars.
+        </p>
       </div>
 
       {/* Gallery Grid */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+      <div className="section-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {images.map((img, index) => (
           <div
             key={index}
-            className="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition duration-300"
+            className="overflow-hidden rounded-2xl shadow-lg group relative cursor-pointer"
           >
+             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500 z-10 flex items-center justify-center">
+                <span className="text-white font-bold text-lg tracking-wider transform translate-y-4 group-hover:translate-y-0 transition duration-500">VIEW</span>
+             </div>
             <img
               src={img}
               alt="Ambiance"
-              className="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover hover:scale-110 transition duration-500"
+              className="w-full h-64 md:h-72 object-cover transform group-hover:scale-110 transition duration-700 ease-in-out"
             />
           </div>
         ))}

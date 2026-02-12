@@ -32,40 +32,53 @@ const newsData = [
 
 const LatestNews = () => {
   return (
-    <section className="py-16 sm:py-20 bg-neutral-950">
-      <h3 className="text-center text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-white">
-        LATEST NEWS
-      </h3>
+    <section className="bg-neutral-900 section-padding">
+      <div className="section-container">
+        
+        <div className="text-center mb-16">
+           <h3 className="text-3xl sm:text-4xl font-bold text-white uppercase tracking-wider">
+            Happening Now
+          </h3>
+          <p className="text-amber-500 tracking-[0.2em] font-bold text-sm mt-2 uppercase">At Patil Bars Nagpur</p>
+        </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-6">
-        {newsData.map((item) => (
-          <div
-            key={item.id}
-            className="bg-neutral-900 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300"
-          >
-            {/* Image */}
-            <img
-              src={item.image}
-              alt="news"
-              className="h-32 sm:h-40 w-full object-cover"
-            />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {newsData.map((item) => (
+            <div
+              key={item.id}
+              className="bg-black rounded-2xl overflow-hidden group hover:scale-[1.02] transition-all duration-500 border border-white/5 hover:border-amber-500/30 shadow-lg"
+            >
+              {/* Image */}
+              <div className="h-48 overflow-hidden relative">
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10" />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              </div>
 
-            {/* Content */}
-            <div className="p-3 sm:p-4 text-center">
-              <span className="text-orange-500 text-xs sm:text-sm">
-                {item.date}
-              </span>
+              {/* Content */}
+              <div className="p-6">
+                <span className="text-amber-500 text-xs font-bold tracking-wider uppercase mb-2 block">
+                  Featured
+                </span>
 
-              <h4 className="font-semibold mt-1 sm:mt-2 text-white text-sm sm:text-base">
-                {item.title}
-              </h4>
+                <h4 className="text-xl font-bold text-white mb-2 leading-tight">
+                  {item.title}
+                </h4>
 
-              <p className="text-gray-400 text-xs sm:text-sm mt-1">
-                {item.desc}
-              </p>
+                <p className="text-gray-400 text-sm line-clamp-2">
+                  Discover our exclusive specials and events happening this week.
+                </p>
+                
+                <button className="mt-4 text-sm font-semibold text-white border-b border-amber-500 pb-0.5 hover:text-amber-500 transition">
+                  Read More
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

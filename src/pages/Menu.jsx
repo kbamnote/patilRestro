@@ -125,25 +125,25 @@ const OrderModal = ({ item, closeModal }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-      <div className="bg-neutral-200 w-full max-w-md rounded-2xl p-4 sm:p-6 relative">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-neutral-900 w-full max-w-md rounded-2xl p-6 sm:p-8 relative border border-white/10 shadow-2xl animate-fade-in-up">
         <button
           onClick={closeModal}
-          className="absolute top-2 right-3 sm:top-3 sm:right-4 text-xl sm:text-2xl font-bold text-gray-700 hover:text-black"
+          className="absolute top-4 right-4 text-2xl font-bold text-gray-500 hover:text-white transition"
         >
           ×
         </button>
 
-        <h2 className="text-xl sm:text-2xl font-semibold text-center text-yellow-500 mb-4 sm:mb-6">
-          Book Your Order
+        <h2 className="text-2xl font-bold text-center text-white mb-6">
+          Order <span className="text-amber-500">{item.name}</span>
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
             name="name"
             placeholder="Your Name"
-            className="w-full p-2 sm:p-3 rounded-lg border text-black text-sm sm:text-base"
+            className="w-full p-3 rounded-lg bg-black border border-white/10 text-white focus:border-amber-500 outline-none transition"
             onChange={handleChange}
             required
           />
@@ -152,27 +152,29 @@ const OrderModal = ({ item, closeModal }) => {
             type="text"
             name="table"
             placeholder="Table No"
-            className="w-full p-2 sm:p-3 rounded-lg border text-black text-sm sm:text-base"
+            className="w-full p-3 rounded-lg bg-black border border-white/10 text-white focus:border-amber-500 outline-none transition"
             onChange={handleChange}
             required
           />
 
-          <input
-            type="text"
-            value={item.name}
-            readOnly
-            className="w-full p-2 sm:p-3 rounded-lg border text-black bg-gray-100 text-sm sm:text-base"
-          />
+          <div className="grid grid-cols-2 gap-4">
+             <input
+              type="text"
+              value={item.name}
+              readOnly
+              className="w-full p-3 rounded-lg bg-white/5 border border-white/5 text-gray-400 cursor-not-allowed"
+            />
 
-          <input
-            type="number"
-            name="quantity"
-            placeholder="Quantity"
-            min="1"
-            className="w-full p-2 sm:p-3 rounded-lg border text-black text-sm sm:text-base"
-            onChange={handleChange}
-            required
-          />
+            <input
+              type="number"
+              name="quantity"
+              placeholder="Qty"
+              min="1"
+              className="w-full p-3 rounded-lg bg-black border border-white/10 text-white focus:border-amber-500 outline-none transition"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
           <input
             type="tel"
@@ -181,20 +183,20 @@ const OrderModal = ({ item, closeModal }) => {
             value={formData.phone}
             onChange={handleChange}
             required
-            className={`w-full p-2 sm:p-3 rounded-lg border text-black text-sm sm:text-base ${
-              error && error.includes("Phone") ? "border-red-500" : "border-gray-300"
+            className={`w-full p-3 rounded-lg bg-black border text-white outline-none transition ${
+              error && error.includes("Phone") ? "border-red-500 focus:border-red-500" : "border-white/10 focus:border-amber-500"
             }`}
           />
 
-          {success && <p className="text-green-600 text-xs sm:text-sm">{success}</p>}
-          {error && <p className="text-red-600 text-xs sm:text-sm">{error}</p>}
+          {success && <p className="text-green-500 text-sm text-center font-medium bg-green-500/10 py-1 rounded">{success}</p>}
+          {error && <p className="text-red-500 text-sm text-center font-medium bg-red-500/10 py-1 rounded">{error}</p>}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-neutral-800 text-white py-2 sm:py-3 rounded-full hover:bg-black transition disabled:opacity-50 text-sm sm:text-base"
+            className="w-full bg-amber-500 text-black py-3 rounded-lg font-bold hover:bg-amber-400 transition disabled:opacity-50 mt-2"
           >
-            {loading ? "Placing Order..." : "Book Order"}
+            {loading ? "Placing Order..." : "Confirm Order"}
           </button>
         </form>
       </div>
@@ -208,24 +210,27 @@ const MenuSection = ({ title, items }) => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   return (
-    <div className="bg-black/40 p-4 sm:p-6 rounded-xl border border-gray-800">
-      <h2 className="text-lg sm:text-xl font-semibold text-white mb-4 sm:mb-6 text-center">
+    <div className="bg-neutral-900/40 p-6 sm:p-8 rounded-2xl border border-white/5 hover:border-white/10 transition-colors duration-300">
+      <h2 className="text-2xl font-bold text-white mb-6 text-center tracking-wide border-b border-white/5 pb-4">
         {title}
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 gap-4">
         {items.map((item, index) => (
           <div
             key={index}
-            className="bg-black p-3 sm:p-4 rounded-lg border border-gray-800 hover:border-amber-400 transition"
+            className="flex justify-between items-center group p-3 rounded-lg hover:bg-white/5 transition duration-300"
           >
-            <h3 className="text-xs sm:text-sm text-white">{item.name}</h3>
-            <p className="text-amber-400 text-xs sm:text-sm mt-1">{item.price}</p>
+             <div>
+                <h3 className="text-base font-medium text-gray-200 group-hover:text-white transition">{item.name}</h3>
+                <p className="text-amber-500 text-sm font-bold mt-1">{item.price}</p>
+             </div>
+             
             <button
               onClick={() => setSelectedItem(item)}
-              className="mt-2 sm:mt-3 w-full bg-amber-500 text-black text-xs sm:text-sm py-1 sm:py-1.5 rounded hover:bg-amber-400 transition"
+              className="bg-transparent border border-gray-600 text-gray-300 px-4 py-1.5 rounded text-sm hover:border-amber-500 hover:text-amber-500 transition"
             >
-              Order Now
+              Order
             </button>
           </div>
         ))}
@@ -246,23 +251,43 @@ const MenuSection = ({ title, items }) => {
 
 const Menu = () => {
   return (
-    <div className="bg-neutral-950 text-gray-300 pt-24 sm:pt-28 px-4 sm:px-6 pb-12 sm:pb-16">
+    <div className="bg-neutral-950 text-gray-300 pt-32 pb-20">
       {/* Heading */}
-      <div className="text-center mb-12 sm:mb-16">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-          Our Menu
+      <div className="section-container text-center mb-16">
+        <h1 className="mb-6">
+          Our Exclusive Menu
         </h1>
+        <p className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Explore the finest selection of beverages and bites at Patil Bars Nagpur. 
+            From rare single malts and vintage wines to refreshing mocktails, our bar menu is curated to delight every palate. 
+            Pair your drinks with our mouth-watering tandoori starters and crispy bar nibbles, making us the top choice for food and drinks in Nagpur.
+        </p>
       </div>
 
       {/* Category Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
-        <MenuSection title="Signature Cocktails" items={cocktails} />
-        <MenuSection title="Premium Wines" items={wines} />
-        <MenuSection title="Beers" items={beers} />
-        <MenuSection title="Mocktails" items={mocktails} />
-        <MenuSection title="Soft Drinks" items={softDrinks} />
-        <MenuSection title="Veg Starters" items={vegStarters} />
-        <MenuSection title="Non-Veg Starters" items={nonVegStarters} />
+      <div className="section-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="space-y-8">
+           <MenuSection title="Signature Cocktails" items={cocktails} />
+           <MenuSection title="Premium Wines" items={wines} />
+           <MenuSection title="Beers" items={beers} />
+        </div>
+        
+        <div className="space-y-8">
+           <MenuSection title="Veg Starters" items={vegStarters} />
+           <MenuSection title="Non-Veg Starters" items={nonVegStarters} />
+           <MenuSection title="Mocktails" items={mocktails} />
+        </div>
+
+         <div className="space-y-8">
+            <MenuSection title="Soft Drinks" items={softDrinks} />
+            
+            {/* Promo Card */}
+            <div className="bg-amber-500 p-8 rounded-2xl text-black text-center h-full flex flex-col justify-center items-center">
+               <h3 className="text-2xl font-bold mb-4">Happy Hours! 🍻</h3>
+               <p className="font-medium mb-6">Get 1+1 on selected drinks everyday from 4 PM to 8 PM.</p>
+               <button className="bg-black text-white px-6 py-2 rounded-lg hover:bg-neutral-800 transition">View Offers</button>
+            </div>
+         </div>
       </div>
     </div>
   );

@@ -26,48 +26,50 @@ const wines = [
 
 const PremiumWines = () => {
   return (
-    <section className="bg-black py-20 px-6">
-      {/* Heading */}
-      <div className="text-center mb-14">
-        <p className="text-sm tracking-[0.3em] text-gray-400 uppercase">
-          Get Ready
-        </p>
-        <h2 className="text-3xl md:text-4xl font-serif text-white mt-2">
-          PREMIUM WINES
-        </h2>
-        <div className="w-16 h-[2px] bg-amber-500 mx-auto mt-4" />
-      </div>
+    <section className="bg-neutral-950 section-padding">
+      <div className="section-container">
+        {/* Heading */}
+        <div className="text-center mb-16 sm:mb-20">
+          <p className="text-sm font-bold tracking-[0.25em] text-gray-500 uppercase mb-3">
+            Curated for You
+          </p>
+          <h2 className="mb-6">
+            PREMIUM WINES IN NAGPUR
+          </h2>
+          <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full" />
+        </div>
 
-      {/* Wines */}
-      <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 md:grid-cols-3">
-        {wines.map((wine) => (
-          <div
-            key={wine.id}
-            className="text-center group transition transform hover:-translate-y-3"
-          >
-            {/* Image */}
-            <div className="relative">
-              <img
-                src={wine.image}
-                alt={wine.name}
-                className="mx-auto h-80 object-contain drop-shadow-[0_20px_30px_rgba(255,200,100,0.25)]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition" />
+        {/* Wines */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12">
+          {wines.map((wine) => (
+            <div
+              key={wine.id}
+              className="text-center group p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-amber-500/30 transition-all duration-500 hover:-translate-y-2"
+            >
+              {/* Image */}
+              <div className="relative mb-8 flex justify-center">
+                <div className="absolute inset-0 bg-amber-500/10 blur-xl rounded-full scale-0 group-hover:scale-100 transition duration-700" />
+                <img
+                  src={wine.image}
+                  alt={wine.name}
+                  className="h-72 sm:h-80 object-contain drop-shadow-lg relative z-10 transition duration-500 group-hover:scale-110"
+                />
+              </div>
+
+              {/* Info */}
+              <h3 className="text-lg font-semibold tracking-wide mb-2 text-white group-hover:text-amber-500 transition-colors">
+                {wine.name}
+              </h3>
+
+              {/* Rating */}
+              <div className="flex justify-center gap-1 text-amber-500 text-sm mb-4">
+                ★ ★ ★ ★ ★
+              </div>
+
+              <p className="text-xl font-bold text-gray-200">{wine.price}</p>
             </div>
-
-            {/* Info */}
-            <h3 className="text-white text-sm tracking-wide mt-6">
-              {wine.name}
-            </h3>
-
-            {/* Rating */}
-            <div className="flex justify-center gap-1 text-amber-400 mt-2">
-              ★ ★ ★ ★ ★
-            </div>
-
-            <p className="text-gray-300 mt-2">{wine.price}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

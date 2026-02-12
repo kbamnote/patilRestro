@@ -13,64 +13,67 @@ const WhiskeyHero = () => {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[400px] sm:min-h-[450px] md:min-h-[520px] bg-black overflow-hidden flex items-center">
+    <section className="relative w-full py-24 sm:py-32 bg-black overflow-hidden flex items-center">
       
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-black via-neutral-900 to-black" />
 
-      {/* Decorative Shapes */}
-      <div className="absolute top-6 sm:top-8 left-4 sm:left-6 md:left-10 w-16 sm:w-24 md:w-32 lg:w-40 h-16 sm:h-24 md:h-32 lg:h-40 border border-yellow-600/20 rotate-45" />
-      <div className="absolute bottom-12 sm:bottom-16 left-6 sm:left-8 md:left-10 w-12 sm:w-16 md:w-24 lg:w-32 h-12 sm:h-16 md:h-24 lg:h-32 border border-yellow-600/10 rotate-45" />
+      {/* Decorative Shapes - Subtle/Modern */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-900/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-700/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8">
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 sm:gap-10">
+      <div className="relative z-10 section-container">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12 lg:gap-20">
           
           {/* Text */}
-          <div className="text-center md:text-left max-w-xl w-full">
-            <p className="text-[10px] xs:text-xs sm:text-sm tracking-widest text-neutral-400 mb-2 sm:mb-3">
-              JACK DANIEL'S
+          <div className="text-center md:text-left order-2 md:order-1">
+            <p className="text-sm font-bold tracking-[0.2em] text-amber-500 uppercase mb-4">
+              Jack Daniel's Collection
             </p>
 
-            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-tight">
-              HOUSE OF <br />
-              <span className="font-bold">WHISKEY</span>
-            </h1>
+            <h2 className="mb-6 leading-tight">
+              NAGPUR'S FINEST <br />
+              <span className="text-amber-500">WHISKEY SELECTION</span>
+            </h2>
+            
+            <p className="max-w-md mx-auto md:mx-0 text-gray-400 mb-8 leading-relaxed">
+              Experience the depth of flavor with our curated selection of premium whiskeys. Perfect for the connoisseur and the casual drinker alike.
+            </p>
 
-            <div className="mt-4 sm:mt-6 flex justify-center md:justify-start">
-              
+            <div className="flex justify-center md:justify-start">
+               <button className="btn-outline border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black">
+                 Explore Collection
+               </button>
             </div>
           </div>
 
           {/* Image with Transition */}
-          <div className="flex justify-center md:justify-end w-full md:w-auto hover:scale-105 hover:-translate-y-2">
-            <img
-              src={whiskeyImg}
-              alt="Whiskey Bottles"
-              className={`
-                h-[180px] 
-                xs:h-[220px]
-                sm:h-[280px] 
-                md:h-[360px] 
-                lg:h-[420px]
-                xl:h-[460px]
-                object-contain
-                drop-shadow-2xl
-                transition-all duration-1000 ease-out
-                ${
-                  showImage
-                    ? "opacity-100 translate-x-0 scale-100"
-                    : "opacity-0 translate-x-10 scale-90"
-                }
-              `}
-            />
+          <div className="flex justify-center md:justify-end order-1 md:order-2">
+            <div className="relative">
+               {/* Glow effect behind bottle */}
+               <div className="absolute inset-0 bg-amber-500/20 blur-2xl rounded-full scale-75 animate-pulse" />
+               <img
+                src={whiskeyImg}
+                alt="Whiskey Bottles"
+                className={`
+                  relative z-10
+                  h-[300px] sm:h-[400px] md:h-[500px]
+                  object-contain
+                  drop-shadow-2xl
+                  transition-all duration-1000 ease-out
+                  ${
+                    showImage
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-10"
+                  }
+                `}
+              />
+            </div>
           </div>
 
         </div>
       </div>
-
-      {/* Bottom Reflection */}
-      <div className="absolute bottom-0 left-0 w-full h-16 sm:h-20 md:h-28 bg-gradient-to-t from-black/90 to-transparent" />
     </section>
   );
 };

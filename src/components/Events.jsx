@@ -3,46 +3,54 @@ import rightImg from "../assets/images/right-drink.jpg";
 
 const Events = () => {
   return (
-    <section className="relative bg-black py-16 sm:py-20 px-4 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-6 sm:gap-8 md:gap-10">
+    <section className="relative bg-black section-padding overflow-hidden">
+      <div className="section-container">
+        <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-12 lg:gap-16">
         
-        {/* Left Image */}
-        <div className="flex justify-center md:justify-end">
-          <div className="relative w-40 h-60 sm:w-48 sm:h-72 md:w-56 md:h-80 lg:w-64 lg:h-96 rounded-t-full overflow-hidden shadow-xl">
-            <img
-              src={leftImg}
-              alt="Cocktail Event"
-              className="w-full h-full object-cover hover:scale-110 transition duration-700"
-            />
+          {/* Left Image */}
+          <div className="hidden lg:flex justify-end">
+            <div className="relative w-64 h-96 rounded-t-full overflow-hidden border border-white/10 hover:border-amber-500/50 transition duration-500 group">
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500 z-10" />
+              <img
+                src={leftImg}
+                alt="Cocktail Event"
+                className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+              />
+            </div>
           </div>
-        </div>
 
-        {/* Center Content */}
-        <div className="text-center text-white px-4 py-6">
-          <span className="text-xs sm:text-sm tracking-widest text-gray-400">
-            ABOUT US
-          </span>
+          {/* Center Content */}
+          <div className="text-center lg:col-span-1">
+            <span className="text-sm font-bold tracking-[0.2em] text-amber-500 uppercase block mb-4">
+              Nightlife in Nagpur
+            </span>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif mt-3 sm:mt-4 leading-snug">
-            AGED IN TRADITION <br />
-            <span className="block mt-1 sm:mt-2">STEEPED IN INNOVATION</span>
-          </h2>
+            <h2 className="mb-6 leading-tight">
+              LIVE MUSIC, DJ NIGHTS <br />
+              <span className="text-gray-500 text-3xl sm:text-4xl md:text-5xl">& IPL SCREENINGS</span>
+            </h2>
 
-          <p className="text-gray-400 text-xs sm:text-sm mt-4 sm:mt-6 max-w-xs sm:max-w-sm md:max-w-md mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Curabitur ut elit nec nisl posuere fermentum.
-          </p>
-        </div>
+            <p className="text-gray-400 text-base sm:text-lg mb-8 leading-relaxed max-w-md mx-auto">
+              Join us for the most happening events in town. From soulful live acoustic sessions to electrifying DJ nights and live sports screenings, Patil Bars is the heartbeat of Nagpur's party scene.
+            </p>
 
-        {/* Right Image */}
-        <div className="flex justify-center md:justify-start">
-          <div className="relative w-40 h-60 sm:w-48 sm:h-72 md:w-56 md:h-80 lg:w-64 lg:h-96 rounded-t-full overflow-hidden shadow-xl">
-            <img
-              src={rightImg}
-              alt="Whiskey Bottle"
-              className="w-full h-full object-cover hover:scale-110 transition duration-700"
-            />
+            <button className="btn-outline border-white text-white hover:bg-white hover:text-black">
+              See Events Calendar
+            </button>
           </div>
+
+          {/* Right Image */}
+          <div className="flex justify-center lg:justify-start">
+             <div className="relative w-64 h-96 rounded-t-full overflow-hidden border border-white/10 hover:border-amber-500/50 transition duration-500 group">
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500 z-10" />
+              <img
+                src={rightImg}
+                alt="Whiskey Bottle"
+                className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

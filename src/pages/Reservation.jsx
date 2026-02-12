@@ -71,19 +71,19 @@ const Reservation = () => {
   };
 
   return (
-    <div className="bg-neutral-950 text-gray-300 pt-24 sm:pt-28 px-4 sm:px-6 pb-12 sm:pb-16">
+    <div className="bg-neutral-950 text-gray-300 pt-32 pb-20">
       {/* Heading */}
-      <div className="text-center mb-10 sm:mb-14">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+      <div className="section-container text-center mb-16">
+        <h1 className="mb-6">
           Reserve a Table
         </h1>
-        <p className="mt-3 sm:mt-4 text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
           Book your cozy spot and enjoy great drinks & music 🍸
         </p>
       </div>
 
       {/* Table Cards */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+      <div className="section-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {[
           { img: table1, title: "Table 1" },
           { img: table2, title: "Table 2" },
@@ -97,16 +97,18 @@ const Reservation = () => {
         ].map((table, index) => (
           <div
             key={index}
-            className="bg-black rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:scale-105 transition duration-300"
+            className="group relative bg-black rounded-2xl overflow-hidden shadow-lg border border-white/5 hover:border-amber-500/50 transition duration-500"
           >
-            <img
-              src={table.img}
-              alt={table.title}
-              className="w-full h-48 sm:h-56 md:h-64 object-cover"
-            />
+            <div className="overflow-hidden h-64">
+               <img
+                  src={table.img}
+                  alt={table.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+               />
+            </div>
 
-            <div className="p-4 sm:p-6 text-center">
-              <h3 className="text-lg sm:text-xl text-white mb-3 sm:mb-4">
+            <div className="p-6 text-center absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center">
+              <h3 className="text-2xl font-bold text-white mb-4 translate-y-4 group-hover:translate-y-0 transition duration-300">
                 {table.title}
               </h3>
 
@@ -115,83 +117,103 @@ const Reservation = () => {
                   setSelectedTable(table.title);
                   setOpenForm(true);
                 }}
-                className="bg-amber-500 text-black px-4 sm:px-6 py-2 rounded-full hover:bg-amber-400 transition text-sm sm:text-base"
+                className="btn-primary translate-y-4 group-hover:translate-y-0 transition duration-300 delay-75 shadow-lg shadow-amber-500/20"
               >
                 Book Now
               </button>
             </div>
+            
+            {/* Mobile View / Always Visible Title when not hovering (Optional, for better UX on touch) */}
+             <div className="p-4 bg-black border-t border-white/5 md:hidden">
+                <h3 className="text-lg font-bold text-white text-center">{table.title}</h3>
+                 <button
+                   onClick={() => {
+                      setSelectedTable(table.title);
+                      setOpenForm(true);
+                    }}
+                   className="mt-3 w-full bg-amber-500 text-black py-2 rounded font-semibold text-sm"
+                 >
+                    Book Now
+                 </button>
+             </div>
           </div>
         ))}
       </div>
 
       {/* Booking Form Modal */}
       {openForm && (
-        <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-50 p-4">
-          <div className="bg-neutral-950 p-4 sm:p-6 md:p-8 rounded-lg max-w-xl w-full relative border border-gray-700">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex justify-center items-center z-50 p-4">
+          <div className="bg-neutral-900 section-padding p-8 rounded-2xl max-w-xl w-full relative border border-white/10 shadow-2xl animate-fade-in-up">
             <button
               onClick={() => setOpenForm(false)}
-              className="absolute top-2 right-3 sm:top-3 sm:right-4 text-white text-lg sm:text-xl"
+              className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl"
             >
               ✖
             </button>
 
-            <h2 className="text-white text-lg sm:text-xl mb-3 sm:mb-4">
-              Booking for {selectedTable}
+            <h2 className="text-2xl font-bold text-white mb-6 text-center">
+              Booking for <span className="text-amber-500">{selectedTable}</span>
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 md:space-y-5">
-              <input
-                type="text"
-                name="fullName"
-                placeholder="Full Name"
-                value={formData.fullName}
-                onChange={handleChange}
-                required
-                className="w-full p-2 sm:p-3 bg-transparent border border-gray-600 rounded focus:border-amber-400 outline-none text-sm sm:text-base"
-              />
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <input
+                    type="text"
+                    name="fullName"
+                    placeholder="Full Name"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    required
+                    className="w-full p-3 bg-black border border-white/10 rounded-lg text-white focus:border-amber-500 outline-none transition"
+                  />
 
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full p-2 sm:p-3 bg-transparent border border-gray-600 rounded focus:border-amber-400 outline-none text-sm sm:text-base"
-              />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full p-3 bg-black border border-white/10 rounded-lg text-white focus:border-amber-500 outline-none transition"
+                  />
+              </div>
 
-              <select
-                name="guests"
-                value={formData.guests || ""}
-                onChange={handleChange}
-                required
-                className="w-full p-2 sm:p-3 bg-transparent border border-gray-600 rounded focus:border-amber-400 outline-none text-sm sm:text-base"
-              >
-                <option value="">Select Guests</option>
-                <option value="1">1 Person</option>
-                <option value="2">2 People</option>
-                <option value="3">3 People</option>
-                <option value="4">4 People</option>
-                <option value="5">5+ People</option>
-              </select>
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <select
+                    name="guests"
+                    value={formData.guests || ""}
+                    onChange={handleChange}
+                    required
+                    className="w-full p-3 bg-black border border-white/10 rounded-lg text-white focus:border-amber-500 outline-none transition appearance-none"
+                  >
+                    <option value="" className="text-gray-500">Select Guests</option>
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5+ People</option>
+                  </select>
 
-              <input
-                type="date"
-                name="date"
-                value={formData.date}
-                onChange={handleChange}
-                required
-                className="w-full p-2 sm:p-3 bg-transparent border border-gray-600 rounded focus:border-amber-400 outline-none text-sm sm:text-base"
-              />
+                  <div className="grid grid-cols-2 gap-2">
+                     <input
+                        type="date"
+                        name="date"
+                        value={formData.date}
+                        onChange={handleChange}
+                        required
+                        className="w-full p-3 bg-black border border-white/10 rounded-lg text-white focus:border-amber-500 outline-none transition text-sm"
+                      />
+                      <input
+                        type="time"
+                        name="time"
+                        value={formData.time}
+                        onChange={handleChange}
+                        required
+                        className="w-full p-3 bg-black border border-white/10 rounded-lg text-white focus:border-amber-500 outline-none transition text-sm"
+                      />
+                  </div>
+               </div>
 
-              <input
-                type="time"
-                name="time"
-                value={formData.time}
-                onChange={handleChange}
-                required
-                className="w-full p-2 sm:p-3 bg-transparent border border-gray-600 rounded focus:border-amber-400 outline-none text-sm sm:text-base"
-              />
 
               <textarea
                 name="specialRequest"
@@ -199,18 +221,18 @@ const Reservation = () => {
                 value={formData.specialRequest}
                 onChange={handleChange}
                 rows="3"
-                className="w-full p-2 sm:p-3 bg-transparent border border-gray-600 rounded focus:border-amber-400 outline-none text-sm sm:text-base"
+                className="w-full p-3 bg-black border border-white/10 rounded-lg text-white focus:border-amber-500 outline-none transition resize-none"
               />
 
-              {success && <p className="text-green-400 text-xs sm:text-sm">{success}</p>}
-              {error && <p className="text-red-400 text-xs sm:text-sm">{error}</p>}
+              {success && <p className="text-green-500 text-sm font-medium text-center">{success}</p>}
+              {error && <p className="text-red-500 text-sm font-medium text-center">{error}</p>}
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-amber-500 text-black py-2 sm:py-3 font-semibold rounded hover:bg-amber-400 transition disabled:opacity-50 text-sm sm:text-base"
+                className="w-full bg-amber-500 text-black py-3 font-bold rounded-lg hover:bg-amber-400 transition disabled:opacity-50 mt-2"
               >
-                {loading ? "Booking..." : "Book Table"}
+                {loading ? "Booking in progress..." : "Confirm Booking"}
               </button>
             </form>
           </div>

@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+import ScrollToTop from "./components/ScrollToTop";
+
 // Home Sections
 import Hero from "./components/Hero";
 import LatestNews from "./components/LatestNews";
@@ -37,6 +39,7 @@ const Home = () => {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="bg-black text-white min-h-screen flex flex-col">
 
         {/* Navbar Visible Everywhere */}
